@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Movies Up</string>
+    <string name="tab_text_1">Movies</string>
+    <string name="tab_text_2">Tv Show</string>
+
+    <string name="movie_title">Movie Title</string>
+    <string name="age">Age</string>
+    <string name="category">Category</string>
+    <string name="duration">Duration</string>
+    <string name="overview">OverView</string>
+</resources>
