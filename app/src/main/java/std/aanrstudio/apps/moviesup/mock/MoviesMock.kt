@@ -89,10 +89,8 @@ object MoviesMock {
                 val movie = Movie()
                 movie.title = title[position]
                 movie.overview = overview[position]
-                movie.genre = genre[position]
                 movie.duration = duration[position]
-                movie.age = age[position]
-                movie.poster = poster[position]
+                movie.poster = ""
                 ls.add(movie)
             }
             return ls
@@ -102,10 +100,7 @@ object MoviesMock {
         val movie = Movie()
         movie.title = title[position]
         movie.overview = overview[position]
-        movie.genre = genre[position]
         movie.duration = duration[position]
-        movie.age = age[position]
-        movie.poster = poster[position]
 
         return movie
     }

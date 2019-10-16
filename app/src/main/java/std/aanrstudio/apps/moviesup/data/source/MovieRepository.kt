@@ -11,4 +11,9 @@ class MovieRepository(val remoteRepository: RemoteRepository) {
         return remoteRepository.liveData
     }
 
+    fun getDetailMovie(id: String?) : LiveData<Movie> {
+        remoteRepository.detailMovie(id)
+        return remoteRepository.movie
+    }
+
 }
