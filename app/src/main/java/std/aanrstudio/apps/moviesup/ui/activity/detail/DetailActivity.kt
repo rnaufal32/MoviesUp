@@ -5,16 +5,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
 
-import java.util.ArrayList
-
 import std.aanrstudio.apps.moviesup.R
-import std.aanrstudio.apps.moviesup.data.source.model.Movie
 import std.aanrstudio.apps.moviesup.data.source.model.Tv
 import std.aanrstudio.apps.moviesup.di.Injection
 
@@ -26,6 +25,8 @@ class DetailActivity : AppCompatActivity() {
     lateinit var duration: TextView
     lateinit var overview: TextView
     lateinit var detailViewModel: DetailViewModel
+    lateinit var loading: ProgressBar
+    lateinit var content: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +38,8 @@ class DetailActivity : AppCompatActivity() {
         category = findViewById(R.id.detail_category)
         duration = findViewById(R.id.detail_duration)
         overview = findViewById(R.id.detail_overview)
+        loading = findViewById(R.id.loading_detail)
+        content = findViewById(R.id.content_details)
 
         if (supportActionBar != null) {
             supportActionBar!!.setDisplayShowHomeEnabled(true)
@@ -76,6 +79,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun getMovie() {
         detailViewModel.getMovies().observe(this, Observer {
+            content.visibility = View.VISIBLE
+            loading.visibility = View.GONE
             title.text = it.title
             age.text = it.duration
             category.text = it.release_date
