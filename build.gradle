@@ -11,11 +11,11 @@ buildscript {
         archLifecycleVersion = '2.1.0'
         archLifecycleExtension = "1.1.1"
         fanPlugin = "1.0.2"
-        glideVersion = '4.9.0'
+        glideVersion = '4.10.0'
         junitVersion = '4.12'
         mockitoVersion = '2.23.4'
-        androidXTestVersion = '1.1.0'
-        espressoVersion = '3.1.0'
+        androidXTestVersion = '1.2.0'
+        espressoVersion = '3.2.0'
         idleResourceVersion = '3.2.0'
     }
     repositories {

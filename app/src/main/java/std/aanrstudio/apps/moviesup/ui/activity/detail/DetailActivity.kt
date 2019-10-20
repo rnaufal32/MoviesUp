@@ -14,13 +14,11 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 
 import std.aanrstudio.apps.moviesup.R
-import std.aanrstudio.apps.moviesup.data.source.model.Tv
 import std.aanrstudio.apps.moviesup.di.Injection
 
 class DetailActivity : AppCompatActivity() {
     lateinit var poster: ImageView
     lateinit var title: TextView
-    lateinit var age: TextView
     lateinit var category: TextView
     lateinit var duration: TextView
     lateinit var overview: TextView
@@ -34,7 +32,6 @@ class DetailActivity : AppCompatActivity() {
 
         poster = findViewById(R.id.detail_poster)
         title = findViewById(R.id.detail_title)
-        age = findViewById(R.id.detail_age)
         category = findViewById(R.id.detail_category)
         duration = findViewById(R.id.detail_duration)
         overview = findViewById(R.id.detail_overview)
@@ -51,12 +48,12 @@ class DetailActivity : AppCompatActivity() {
 
         detailViewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory())
             .get(DetailViewModel::class.java)
-        detailViewModel.ID = id
+        detailViewModel.id = id
 
         if (extraIntent == "Movie") {
             getMovie()
         } else if (extraIntent == "Tv") {
-            getTv(detailViewModel.getTv())
+            getTv()
         }
 
     }
@@ -68,13 +65,20 @@ class DetailActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun getTv(tv: Tv) {
-        title.text = tv.title
-        age.text = tv.age
-        category.text = tv.genre
-        duration.text = tv.duration
-        overview.text = tv.overview
-        poster.setImageResource(tv.poster)
+    private fun getTv() {
+        detailViewModel.getTv().observe(this, Observer {
+            content.visibility = View.VISIBLE
+            loading.visibility = View.GONE
+            title.text = it.title
+            duration.text = it.duration
+            category.text = it.release_date
+            overview.text = it.overview
+
+            Glide.with(this)
+                .load(it.poster)
+                .into(poster)
+
+        })
     }
 
     private fun getMovie() {
@@ -82,7 +86,7 @@ class DetailActivity : AppCompatActivity() {
             content.visibility = View.VISIBLE
             loading.visibility = View.GONE
             title.text = it.title
-            age.text = it.duration
+            duration.text = it.duration
             category.text = it.release_date
             overview.text = it.overview
 

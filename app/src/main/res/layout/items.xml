@@ -24,8 +24,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="contentDescription"
-            app:srcCompat="@drawable/movie_poster_spiderman" />
+            tools:ignore="contentDescription" />
 
         <TextView
             android:id="@+id/txt_title"

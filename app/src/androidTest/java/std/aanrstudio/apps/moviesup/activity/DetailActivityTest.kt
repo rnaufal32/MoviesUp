@@ -1,7 +1,6 @@
 package std.aanrstudio.apps.moviesup.activity
 
 import androidx.test.rule.ActivityTestRule
-import std.aanrstudio.apps.moviesup.mock.FakeMoviesMock
 
 import org.junit.Rule
 import android.content.Intent
@@ -16,16 +15,14 @@ import std.aanrstudio.apps.moviesup.ui.activity.detail.DetailActivity
 
 class DetailActivityTest {
 
-    private val movie = FakeMoviesMock.getData(0)
-
     @Rule @JvmField
     var activityRule: ActivityTestRule<DetailActivity> =
         object : ActivityTestRule<DetailActivity>(
             DetailActivity::class.java) {
             override fun getActivityIntent(): Intent {
-                val targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext()
+                val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
                 val result = Intent(targetContext, DetailActivity::class.java)
-                result.putExtra(DetailActivity.EXTRA_ID, 0)
+                result.putExtra(DetailActivity.EXTRA_ID, "475557")
                 result.putExtra(DetailActivity.EXTRA_INTENT, "Movie")
                 return result
             }
@@ -33,7 +30,8 @@ class DetailActivityTest {
 
     @Test
     fun loadDetail() {
+        Thread.sleep(3000)
         onView(withId(R.id.detail_title)).check(matches(isDisplayed()))
-        onView((withId(R.id.detail_title))).check(matches(withText(movie.title)))
+        onView((withId(R.id.detail_title))).check(matches(withText("Joker")))
     }
 }

@@ -5,15 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import std.aanrstudio.apps.moviesup.R
-import std.aanrstudio.apps.moviesup.data.source.model.Tv
+import std.aanrstudio.apps.moviesup.di.Injection
 
 class TvFragment : Fragment() {
 
-    private var list: ArrayList<Tv> = arrayListOf()
+    lateinit var tvViewModel: TvViewModel
+    lateinit var tvList: RecyclerView
+    lateinit var loading: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,15 +30,18 @@ class TvFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val tvList: RecyclerView = view.findViewById(R.id.list_tv)
+        loading = view.findViewById(R.id.loading_tv)
+        tvList = view.findViewById(R.id.list_tv)
         tvList.setHasFixedSize(true)
         tvList.layoutManager = LinearLayoutManager(view.context)
 
-        val tvViewModel = ViewModelProviders.of(this).get(TvViewModel::class.java)
-        list = tvViewModel.getTvs()
-
-        val adapter = TvAdapter(list)
-        tvList.adapter = adapter
+        tvViewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory()).get(TvViewModel::class.java)
+        tvViewModel.tvList.observe(this, Observer {
+            loading.visibility = View.GONE
+            tvList.visibility = View.VISIBLE
+            val adapter = TvAdapter(it)
+            tvList.adapter = adapter
+        })
     }
 
 }
