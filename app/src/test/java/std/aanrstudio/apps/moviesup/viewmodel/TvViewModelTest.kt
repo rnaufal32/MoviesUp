@@ -8,6 +8,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.mockito.Mockito.*
 import std.aanrstudio.apps.moviesup.data.source.MovieRepository
+import std.aanrstudio.apps.moviesup.data.source.TvRepository
 import std.aanrstudio.apps.moviesup.data.source.model.Tv
 import std.aanrstudio.apps.moviesup.ui.fragment.tv.TvViewModel
 
@@ -17,7 +18,7 @@ class TvViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     lateinit var tvViewModel: TvViewModel
-    private var repository = mock(MovieRepository::class.java)
+    private var repository = mock(TvRepository::class.java)
 
     @Before
     fun before() {

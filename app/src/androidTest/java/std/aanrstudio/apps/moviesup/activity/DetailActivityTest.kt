@@ -5,12 +5,16 @@ import androidx.test.rule.ActivityTestRule
 import org.junit.Rule
 import android.content.Intent
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import std.aanrstudio.apps.moviesup.R
 import std.aanrstudio.apps.moviesup.ui.activity.detail.DetailActivity
+import std.aanrstudio.apps.moviesup.utils.EspressoIdlingResource
 
 
 class DetailActivityTest {
@@ -28,9 +32,18 @@ class DetailActivityTest {
             }
         }
 
+    @Before
+    fun setUp() {
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResource())
+    }
+
+    @After
+    fun tearDown() {
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResource())
+    }
+
     @Test
     fun loadDetail() {
-        Thread.sleep(3000)
         onView(withId(R.id.detail_title)).check(matches(isDisplayed()))
         onView((withId(R.id.detail_title))).check(matches(withText("Joker")))
     }

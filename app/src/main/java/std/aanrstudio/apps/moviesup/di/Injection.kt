@@ -1,8 +1,10 @@
 package std.aanrstudio.apps.moviesup.di
 
 import androidx.lifecycle.ViewModelProvider
+import std.aanrstudio.apps.moviesup.data.source.DetailRepository
 import std.aanrstudio.apps.moviesup.data.source.remote.RemoteRepository
 import std.aanrstudio.apps.moviesup.data.source.MovieRepository
+import std.aanrstudio.apps.moviesup.data.source.TvRepository
 import std.aanrstudio.apps.moviesup.viewmodel.ViewModelFactory
 
 object Injection {
@@ -12,6 +14,7 @@ object Injection {
     }
 
     fun provideViewModelFactory(): ViewModelProvider.Factory {
-        return ViewModelFactory(MovieRepository(provideApi()))
+        return ViewModelFactory(MovieRepository(provideApi()), TvRepository(provideApi()), DetailRepository(
+            provideApi()))
     }
 }

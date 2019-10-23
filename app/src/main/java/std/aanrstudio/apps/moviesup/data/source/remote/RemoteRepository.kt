@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import org.json.JSONObject
 import std.aanrstudio.apps.moviesup.data.source.model.Movie
 import std.aanrstudio.apps.moviesup.data.source.model.Tv
+import std.aanrstudio.apps.moviesup.utils.EspressoIdlingResource
 import std.aanrstudio.apps.moviesup.utils.FanCallback
 
 class RemoteRepository {
@@ -16,6 +17,7 @@ class RemoteRepository {
 
     fun getTvShow() {
         val list: ArrayList<Tv> = arrayListOf()
+        EspressoIdlingResource.increment()
 
         Api.popular("tv", object : FanCallback {
             override fun response(objects: JSONObject) {
@@ -36,12 +38,14 @@ class RemoteRepository {
                     list.add(tv)
                 }
                 liveDataTv.postValue(list)
+                EspressoIdlingResource.decrement()
             }
         })
     }
 
     fun getMovies() {
         val list: ArrayList<Movie> = arrayListOf()
+        EspressoIdlingResource.increment()
 
         Api.popular("movie", object : FanCallback {
             override fun response(objects: JSONObject) {
@@ -62,11 +66,13 @@ class RemoteRepository {
                     list.add(movie)
                 }
                 liveData.postValue(list)
+                EspressoIdlingResource.decrement()
             }
         })
     }
 
     fun detailMovie(id: String?) {
+        EspressoIdlingResource.increment()
 
         Api.detail("movie", id, object : FanCallback {
             override fun response(objects: JSONObject) {
@@ -85,11 +91,13 @@ class RemoteRepository {
                     "https://image.tmdb.org/t/p/w500/$poster"
                 )
                 movie.postValue(res)
+                EspressoIdlingResource.decrement()
             }
         })
     }
 
     fun detailTv(id: String?) {
+        EspressoIdlingResource.increment()
 
         Api.detail("tv", id, object : FanCallback {
             override fun response(objects: JSONObject) {
@@ -109,6 +117,7 @@ class RemoteRepository {
                     "https://image.tmdb.org/t/p/w500/$poster"
                 )
                 detailTv.postValue(res)
+                EspressoIdlingResource.decrement()
             }
         })
     }

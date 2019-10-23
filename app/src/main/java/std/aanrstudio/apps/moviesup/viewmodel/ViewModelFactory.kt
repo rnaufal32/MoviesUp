@@ -2,22 +2,24 @@ package std.aanrstudio.apps.moviesup.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import std.aanrstudio.apps.moviesup.data.source.DetailRepository
 import std.aanrstudio.apps.moviesup.data.source.MovieRepository
+import std.aanrstudio.apps.moviesup.data.source.TvRepository
 import std.aanrstudio.apps.moviesup.ui.activity.detail.DetailViewModel
 import std.aanrstudio.apps.moviesup.ui.fragment.movie.MovieViewModel
 import std.aanrstudio.apps.moviesup.ui.fragment.tv.TvViewModel
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory constructor(private val repository: MovieRepository) : ViewModelProvider.Factory {
+class ViewModelFactory constructor(private val movie: MovieRepository, private val tv: TvRepository, private val detail: DetailRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>) =
         with(modelClass) {
             when {
                 isAssignableFrom(MovieViewModel::class.java) ->
-                    MovieViewModel(repository)
+                    MovieViewModel(movie)
                 isAssignableFrom(DetailViewModel::class.java) ->
-                    DetailViewModel(repository)
+                    DetailViewModel(detail)
                 isAssignableFrom(TvViewModel::class.java) ->
-                    TvViewModel(repository)
+                    TvViewModel(tv)
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
