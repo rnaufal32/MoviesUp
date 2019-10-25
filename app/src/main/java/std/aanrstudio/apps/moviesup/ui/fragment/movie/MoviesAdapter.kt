@@ -25,8 +25,8 @@ class MoviesAdapter(private var listMovie: ArrayList<Movie>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val movie = listMovie[position]
-        holder.txt_title.text = movie.title
-        holder.txt_overview.text = movie.overview
+        holder.txtTitle.text = movie.title
+        holder.txtOverview.text = movie.overview
 
         Glide.with(holder.itemView)
             .load(movie.poster)
@@ -42,8 +42,8 @@ class MoviesAdapter(private var listMovie: ArrayList<Movie>) : RecyclerView.Adap
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var poster: ImageView = itemView.findViewById(R.id.poster)
-        var txt_title: TextView = itemView.findViewById(R.id.txt_title)
-        var txt_overview: TextView = itemView.findViewById(R.id.txt_overview)
+        var txtTitle: TextView = itemView.findViewById(R.id.txt_title)
+        var txtOverview: TextView = itemView.findViewById(R.id.txt_overview)
     }
 
 }

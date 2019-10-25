@@ -7,14 +7,12 @@ import std.aanrstudio.apps.moviesup.data.source.remote.RemoteRepository
 
 class MovieRepository(val remoteRepository: RemoteRepository) {
 
+    @Volatile
+    private lateinit var INSTANCE: MovieRepository
+
     fun getMovie(): LiveData<ArrayList<Movie>> {
         remoteRepository.getMovies()
         return remoteRepository.liveData
-    }
-
-    fun getTvShow(): LiveData<ArrayList<Tv>> {
-        remoteRepository.getTvShow()
-        return remoteRepository.liveDataTv
     }
 
 }
