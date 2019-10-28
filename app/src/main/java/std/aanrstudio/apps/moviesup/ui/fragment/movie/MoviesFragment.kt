@@ -43,12 +43,11 @@ class MoviesFragment : Fragment() {
 
         movieViewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory()).get(
             MovieViewModel::class.java)
-        movieViewModel.movieList.observe(this,
-            Observer<ArrayList<Movie>> {
-                adapter = MoviesAdapter(it)
-                loading.visibility = View.GONE
-                movielist.visibility = View.VISIBLE
-                movielist.adapter = adapter
-            })
+        movieViewModel.movieList().observe(this, Observer {
+            adapter = MoviesAdapter(it)
+            loading.visibility = View.GONE
+            movielist.visibility = View.VISIBLE
+            movielist.adapter = adapter
+        })
     }
 }

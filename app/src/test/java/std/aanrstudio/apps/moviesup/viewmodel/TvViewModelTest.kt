@@ -9,7 +9,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
-import std.aanrstudio.apps.moviesup.data.source.MovieRepository
 import std.aanrstudio.apps.moviesup.data.source.TvRepository
 import std.aanrstudio.apps.moviesup.data.source.mock.TvMockData
 import std.aanrstudio.apps.moviesup.data.source.model.Tv
@@ -20,7 +19,7 @@ class TvViewModelTest {
     @Rule @JvmField
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private var tvViewModel: TvViewModel? = null
+    lateinit var tvViewModel: TvViewModel
     private var repository = mock(TvRepository::class.java)
 
     @Before
@@ -39,7 +38,7 @@ class TvViewModelTest {
 
         val observer = mock(Observer::class.java)
 
-        tvViewModel?.tvList?.observeForever(observer as Observer<in ArrayList<Tv>>)
-        verify(observer)
+        tvViewModel.tvList().observeForever(observer as Observer<ArrayList<Tv>>)
+        verify(observer).onChanged(list)
     }
 }

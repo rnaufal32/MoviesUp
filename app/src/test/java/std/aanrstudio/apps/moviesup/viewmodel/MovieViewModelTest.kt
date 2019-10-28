@@ -9,16 +9,12 @@ import std.aanrstudio.apps.moviesup.data.source.MovieRepository
 import std.aanrstudio.apps.moviesup.data.source.model.Movie
 import std.aanrstudio.apps.moviesup.ui.fragment.movie.MovieViewModel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertNotNull
 import org.junit.Rule
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 import std.aanrstudio.apps.moviesup.data.source.mock.MovieMockData
-import std.aanrstudio.apps.moviesup.data.source.remote.RemoteRepository
 
 
 @RunWith(JUnit4::class)
@@ -27,7 +23,7 @@ class MovieViewModelTest {
     @Rule @JvmField
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private var movieViewModel: MovieViewModel? = null
+    lateinit var movieViewModel: MovieViewModel
     private var repository = mock(MovieRepository::class.java)
 
     @Before
@@ -46,8 +42,8 @@ class MovieViewModelTest {
 
         val observer = mock(Observer::class.java)
 
-        movieViewModel?.movieList?.observeForever(observer as Observer<in ArrayList<Movie>>)
+        movieViewModel.movieList().observeForever(observer as Observer<ArrayList<Movie>>)
 
-        verify(observer)
+        verify(observer).onChanged(list)
     }
 }
