@@ -17,6 +17,7 @@ buildscript {
         androidXTestVersion = '1.2.0'
         espressoVersion = '3.2.0'
         idleResourceVersion = '3.2.0'
+        roomVersion='2.2.1'
     }
     repositories {
         google()

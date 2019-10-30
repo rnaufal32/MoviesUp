@@ -2,6 +2,8 @@
     <string name="app_name">Movies Up</string>
     <string name="tab_text_1">Movies</string>
     <string name="tab_text_2">Tv Show</string>
+    <string name="tab_text_3">Movies Favorite</string>
+    <string name="tab_text_4">Tv Favorite</string>
 
     <string name="movie_title">Movie Title</string>
     <string name="category">Category</string>

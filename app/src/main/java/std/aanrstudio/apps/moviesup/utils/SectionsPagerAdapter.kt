@@ -5,12 +5,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import std.aanrstudio.apps.moviesup.R
+import std.aanrstudio.apps.moviesup.ui.fragment.movie.FavMovieFragment
 import std.aanrstudio.apps.moviesup.ui.fragment.movie.MoviesFragment
+import std.aanrstudio.apps.moviesup.ui.fragment.tv.FavTvFragment
 import std.aanrstudio.apps.moviesup.ui.fragment.tv.TvFragment
 
 private val TAB_TITLES = arrayOf(
     R.string.tab_text_1,
-    R.string.tab_text_2
+    R.string.tab_text_2,
+    R.string.tab_text_3,
+    R.string.tab_text_4
 )
 
 /**
@@ -23,10 +27,12 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
         // Return a MoviesFragment (defined as a static inner class below).
-        when (position) {
-            0 -> return MoviesFragment()
-            1 -> return TvFragment()
-            else -> return MoviesFragment()
+        return when (position) {
+            0 -> MoviesFragment()
+            1 -> TvFragment()
+            2 -> FavMovieFragment()
+            3 -> FavTvFragment()
+            else -> MoviesFragment()
         }
     }
 
@@ -36,6 +42,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
     override fun getCount(): Int {
         // Show 2 total pages.
-        return 2
+        return 4
     }
 }
