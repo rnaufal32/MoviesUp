@@ -41,7 +41,7 @@ class MoviesFragment : Fragment() {
         movielist.setHasFixedSize(true)
         movielist.layoutManager = LinearLayoutManager(view.context)
 
-        movieViewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory()).get(
+        movieViewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(context!!)).get(
             MovieViewModel::class.java)
         movieViewModel.movieList().observe(this, Observer {
             adapter = MoviesAdapter(it)

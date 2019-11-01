@@ -46,7 +46,7 @@ class DetailActivity : AppCompatActivity() {
         val id = intent.extras?.getString(EXTRA_ID)
         val extraIntent = intent.extras?.getString(EXTRA_INTENT)
 
-        detailViewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory())
+        detailViewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(applicationContext))
             .get(DetailViewModel::class.java)
         detailViewModel.id = id
 

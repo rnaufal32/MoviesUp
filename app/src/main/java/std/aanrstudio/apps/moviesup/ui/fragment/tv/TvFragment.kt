@@ -35,7 +35,7 @@ class TvFragment : Fragment() {
         tvList.setHasFixedSize(true)
         tvList.layoutManager = LinearLayoutManager(view.context)
 
-        tvViewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory()).get(TvViewModel::class.java)
+        tvViewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(context!!)).get(TvViewModel::class.java)
         tvViewModel.tvList().observe(this, Observer {
             loading.visibility = View.GONE
             tvList.visibility = View.VISIBLE
