@@ -12,7 +12,7 @@ interface MoviesUpDao {
 
     @WorkerThread
     @Query("SELECT * FROM fav_movie")
-    fun getFavMovies() : LiveData<ArrayList<Movie>>
+    fun getFavMovies() : LiveData<List<Movie>>
 
     @Insert
     fun insertFavMovies(movie: Movie)

@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -46,6 +48,7 @@ dependencies {
     // Arch Component
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
     implementation "android.arch.lifecycle:extensions:$archLifecycleExtension"
+    kapt "android.arch.lifecycle:compiler:$archLifecycleExtension"
 
     //Plugin
     implementation "com.amitshekhar.android:android-networking:$fanPlugin"
@@ -57,6 +60,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
+    kapt "android.arch.persistence.room:compiler:$roomVersion"
 
     // mockito
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

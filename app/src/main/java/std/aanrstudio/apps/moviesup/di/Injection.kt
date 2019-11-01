@@ -23,7 +23,7 @@ object Injection {
     }
 
     fun provideRoom(context: Context): LocalRepository {
-        val db: MoviesUpDatabase = MoviesUpDatabase.getInstance(context)
-        return LocalRepository(db.moviesUpDao())
+        val db = MoviesUpDatabase.getInstance(context)
+        return LocalRepository(db.moviesUpDao)
     }
 }

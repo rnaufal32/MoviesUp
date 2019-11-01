@@ -8,12 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import std.aanrstudio.apps.moviesup.R
+import std.aanrstudio.apps.moviesup.di.Injection
 
 class FavMovieFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = FavMovieFragment()
-    }
 
     private lateinit var viewModel: FavMovieViewModel
 
@@ -26,7 +23,7 @@ class FavMovieFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FavMovieViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(requireContext())).get(FavMovieViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

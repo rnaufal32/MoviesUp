@@ -9,7 +9,7 @@ class FavMovieViewModel(repository: LocalRepository) : ViewModel() {
 
     val repo: LocalRepository = repository
 
-    fun getFavMovies() : LiveData<ArrayList<Movie>> {
+    fun getFavMovies() : LiveData<List<Movie>> {
         return repo.getFavMovies()
     }
 

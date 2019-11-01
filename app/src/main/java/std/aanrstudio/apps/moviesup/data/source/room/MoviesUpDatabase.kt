@@ -7,27 +7,28 @@ import androidx.room.Database
 import std.aanrstudio.apps.moviesup.data.source.model.Movie
 
 
-@Database(entities = [Movie::class], version = 1, exportSchema = false)
+@Database(entities = [Movie::class], version = 1)
 abstract class MoviesUpDatabase : RoomDatabase() {
 
-    abstract fun moviesUpDao() : MoviesUpDao
+    abstract val moviesUpDao : MoviesUpDao
 
     companion object {
-
-        lateinit var INSTANCE: MoviesUpDatabase
-
-        private val sLock = Any()
+        @Volatile
+        private var INSTANCE: MoviesUpDatabase? = null
 
         fun getInstance(context: Context): MoviesUpDatabase {
-            synchronized(sLock) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(
-                        context.getApplicationContext(),
-                        MoviesUpDatabase::class.java, "Moviesup.db"
-                    )
-                    .build()
-                }
-                return INSTANCE
+            val tempInstance = INSTANCE
+            if (tempInstance != null) {
+                return tempInstance
+            }
+            synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    MoviesUpDatabase::class.java,
+                    "moviesUpDatabase"
+                ).build()
+                INSTANCE = instance
+                return instance
             }
         }
     }
