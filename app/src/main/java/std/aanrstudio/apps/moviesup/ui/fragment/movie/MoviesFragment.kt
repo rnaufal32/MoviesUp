@@ -20,7 +20,7 @@ import java.util.ArrayList
  */
 class MoviesFragment : Fragment() {
 
-    private lateinit var movieViewModel: MovieViewModel
+    lateinit var movieViewModel: MovieViewModel
     lateinit var movielist: RecyclerView
     lateinit var adapter: MoviesAdapter
     lateinit var loading: ProgressBar

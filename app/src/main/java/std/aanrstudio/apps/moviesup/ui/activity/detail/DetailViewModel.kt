@@ -9,7 +9,7 @@ import std.aanrstudio.apps.moviesup.data.source.model.Tv
 
 class DetailViewModel(var repository: DetailRepository) : ViewModel() {
 
-    var id: String? = ""
+    var id: Int? = 0
 
     fun getMovies() : LiveData<Movie> {
         return repository.getDetailMovie(id)
@@ -17,6 +17,14 @@ class DetailViewModel(var repository: DetailRepository) : ViewModel() {
 
     fun getTv() : LiveData<Tv> {
         return repository.getDetailTv(id)
+    }
+
+    fun addFilmFavorite(movie: Movie) {
+        repository.addFilmFavorite(movie)
+    }
+
+    fun delFilmFavorite(movie: Movie) {
+        repository.delMovies(movie)
     }
 
 }

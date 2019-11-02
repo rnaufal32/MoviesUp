@@ -12,7 +12,7 @@ import std.aanrstudio.apps.moviesup.utils.FanCallback
 
 object Api {
 
-    fun detail(cat: String, id: String?, callback: FanCallback) : ArrayList<Movie> {
+    fun detail(cat: String, id: Int?, callback: FanCallback) : ArrayList<Movie> {
         val list: ArrayList<Movie> = arrayListOf()
 
         AndroidNetworking.get("${BuildConfig.TMDB_URL}$cat/$id")

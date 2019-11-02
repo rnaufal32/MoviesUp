@@ -56,7 +56,7 @@ class RemoteRepository {
                     val title = obj.getString("title")
                     val overview = obj.getString("overview")
                     val poster:String = obj.getString("poster_path")
-                    val id = obj.getString("id")
+                    val id = obj.getInt("id")
                     val movie = Movie(
                         id,
                         title,
@@ -71,7 +71,7 @@ class RemoteRepository {
         })
     }
 
-    fun detailMovie(id: String?) {
+    fun detailMovie(id: Int?) {
         EspressoIdlingResource.increment()
 
         Api.detail("movie", id, object : FanCallback {
@@ -81,7 +81,7 @@ class RemoteRepository {
                 val poster:String = objects.getString("poster_path")
                 val releaseDate = objects.getString("release_date")
                 val duration = objects.getString("runtime")
-                val id = objects.getString("id")
+                val id = objects.getInt("id")
                 val res = Movie(
                     id,
                     title,
@@ -96,7 +96,7 @@ class RemoteRepository {
         })
     }
 
-    fun detailTv(id: String?) {
+    fun detailTv(id: Int?) {
         EspressoIdlingResource.increment()
 
         Api.detail("tv", id, object : FanCallback {

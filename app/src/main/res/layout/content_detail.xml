@@ -78,4 +78,17 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <Button
+        android:id="@+id/fav_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:drawableLeft="@drawable/ic_star_border_white_24dp"
+        android:padding="5dp"
+        android:text="@string/tambah_favorit"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="@+id/detail_duration"
+        app:layout_constraintTop_toBottomOf="@+id/detail_duration" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

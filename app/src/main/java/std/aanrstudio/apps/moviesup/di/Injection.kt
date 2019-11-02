@@ -10,6 +10,7 @@ import std.aanrstudio.apps.moviesup.data.source.TvRepository
 import std.aanrstudio.apps.moviesup.data.source.room.LocalRepository
 import std.aanrstudio.apps.moviesup.data.source.room.MoviesUpDatabase
 import std.aanrstudio.apps.moviesup.viewmodel.ViewModelFactory
+import java.util.concurrent.Executors
 
 object Injection {
 
@@ -19,11 +20,11 @@ object Injection {
 
     fun provideViewModelFactory(context: Context): ViewModelProvider.Factory {
         return ViewModelFactory(MovieRepository(provideApi()), TvRepository(provideApi()), DetailRepository(
-            provideApi()), provideRoom(context))
+            provideApi(), provideRoom(context)), provideRoom(context))
     }
 
     fun provideRoom(context: Context): LocalRepository {
         val db = MoviesUpDatabase.getInstance(context)
-        return LocalRepository(db.moviesUpDao)
+        return LocalRepository(db.moviesUpDao, Executors.newSingleThreadExecutor())
     }
 }

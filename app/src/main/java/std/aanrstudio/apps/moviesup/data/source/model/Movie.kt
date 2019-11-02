@@ -9,7 +9,7 @@ data class Movie(
 
     @PrimaryKey
     @ColumnInfo(name = "id")
-    var id: String = "",
+    var id: Int = 0,
 
     @ColumnInfo(name = "title")
     var title: String = "",

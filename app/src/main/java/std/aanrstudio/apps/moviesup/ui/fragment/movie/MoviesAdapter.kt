@@ -12,7 +12,7 @@ import std.aanrstudio.apps.moviesup.R
 import std.aanrstudio.apps.moviesup.ui.activity.detail.DetailActivity
 import std.aanrstudio.apps.moviesup.data.source.model.Movie
 
-class MoviesAdapter(private var listMovie: ArrayList<Movie>) : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+class MoviesAdapter(private var listMovie: List<Movie>) : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.items, parent, false)
