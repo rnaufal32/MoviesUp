@@ -1,8 +1,8 @@
 package std.aanrstudio.apps.moviesup.data.source.room
 
-import android.util.Log
-import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import std.aanrstudio.apps.moviesup.data.source.model.Movie
+import std.aanrstudio.apps.moviesup.data.source.model.Tv
 import java.util.concurrent.Executor
 
 class LocalRepository(
@@ -10,8 +10,8 @@ class LocalRepository(
     val ioExecutor: Executor
 ) {
 
-    fun getFavMovies() : LiveData<List<Movie>> {
-        return moviesUpDao.getFavMovies()
+    fun getFavMovie() : DataSource.Factory<Int, Movie> {
+        return moviesUpDao.getFavMovie()
     }
 
     fun addFilmFavorite(movie: Movie) {
@@ -23,6 +23,22 @@ class LocalRepository(
     fun delFilmFavorite(movie: Movie) {
         ioExecutor.execute {
             moviesUpDao.deleteFavMovies(movie)
+        }
+    }
+
+    fun getFavTv() : DataSource.Factory<Int, Tv> {
+        return moviesUpDao.getFavTv()
+    }
+
+    fun addTvFavorite(tv: Tv) {
+        ioExecutor.execute {
+            moviesUpDao.insertFavTv(tv)
+        }
+    }
+
+    fun delTvFavorite(tv: Tv) {
+        ioExecutor.execute {
+            moviesUpDao.deleteFavTv(tv)
         }
     }
 

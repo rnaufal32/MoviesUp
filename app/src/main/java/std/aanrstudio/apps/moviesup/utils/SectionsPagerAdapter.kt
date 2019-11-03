@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import std.aanrstudio.apps.moviesup.R
-import std.aanrstudio.apps.moviesup.ui.fragment.movie.FavMovieFragment
+import std.aanrstudio.apps.moviesup.ui.fragment.favorite.movie.FavMovieFragment
 import std.aanrstudio.apps.moviesup.ui.fragment.movie.MoviesFragment
-import std.aanrstudio.apps.moviesup.ui.fragment.tv.FavTvFragment
+import std.aanrstudio.apps.moviesup.ui.fragment.favorite.tv.FavTvFragment
 import std.aanrstudio.apps.moviesup.ui.fragment.tv.TvFragment
 
 private val TAB_TITLES = arrayOf(

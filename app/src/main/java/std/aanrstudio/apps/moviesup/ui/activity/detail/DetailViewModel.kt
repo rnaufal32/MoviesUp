@@ -27,4 +27,12 @@ class DetailViewModel(var repository: DetailRepository) : ViewModel() {
         repository.delMovies(movie)
     }
 
+    fun addTvFavorite(tv: Tv) {
+        repository.addTvFavorite(tv)
+    }
+
+    fun delTvFavorite(tv: Tv) {
+        repository.delTv(tv)
+    }
+
 }

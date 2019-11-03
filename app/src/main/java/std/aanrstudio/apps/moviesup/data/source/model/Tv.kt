@@ -1,10 +1,28 @@
 package std.aanrstudio.apps.moviesup.data.source.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "fav_tv")
 data class Tv(
-    var id: String = "",
+
+    @PrimaryKey
+    @ColumnInfo(name = "id")
+    var id: Int = 0,
+
+    @ColumnInfo(name = "title")
     var title: String = "",
+
+    @ColumnInfo(name = "overview")
     var overview: String = "",
+
+    @ColumnInfo(name = "release_date")
     var release_date: String = "",
+
+    @ColumnInfo(name = "duration")
     var duration: String = "",
+
+    @ColumnInfo(name = "poster")
     var poster: String = ""
 )

@@ -29,4 +29,12 @@ class DetailRepository(
         localRepository.delFilmFavorite(movie)
     }
 
+    fun addTvFavorite(tv: Tv) {
+        localRepository.addTvFavorite(tv)
+    }
+
+    fun delTv(tv: Tv) {
+        localRepository.delTvFavorite(tv)
+    }
+
 }

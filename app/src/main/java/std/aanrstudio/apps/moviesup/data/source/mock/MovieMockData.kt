@@ -69,13 +69,4 @@ object MovieMockData {
             return ls
         }
 
-    fun getData(position: Int): Movie {
-        val movie = Movie()
-        movie.title = title[position]
-        movie.overview = overview[position]
-        movie.duration = duration[position]
-        movie.poster = poster[position]
-
-        return movie
-    }
 }

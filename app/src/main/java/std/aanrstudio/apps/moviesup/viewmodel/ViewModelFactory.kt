@@ -7,7 +7,8 @@ import std.aanrstudio.apps.moviesup.data.source.MovieRepository
 import std.aanrstudio.apps.moviesup.data.source.TvRepository
 import std.aanrstudio.apps.moviesup.data.source.room.LocalRepository
 import std.aanrstudio.apps.moviesup.ui.activity.detail.DetailViewModel
-import std.aanrstudio.apps.moviesup.ui.fragment.movie.FavMovieViewModel
+import std.aanrstudio.apps.moviesup.ui.fragment.favorite.movie.FavMovieViewModel
+import std.aanrstudio.apps.moviesup.ui.fragment.favorite.tv.FavTvViewModel
 import std.aanrstudio.apps.moviesup.ui.fragment.movie.MovieViewModel
 import std.aanrstudio.apps.moviesup.ui.fragment.tv.TvViewModel
 
@@ -29,6 +30,8 @@ class ViewModelFactory constructor(
                     TvViewModel(tv)
                 isAssignableFrom(FavMovieViewModel::class.java) ->
                     FavMovieViewModel(favorite)
+                isAssignableFrom(FavTvViewModel::class.java) ->
+                    FavTvViewModel(favorite)
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

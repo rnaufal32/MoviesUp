@@ -28,7 +28,7 @@ class RemoteRepository {
                     val title = obj.getString("name")
                     val overview = obj.getString("overview")
                     val poster:String = obj.getString("poster_path")
-                    val id = obj.getString("id")
+                    val id = obj.getInt("id")
                     val tv = Tv(
                         id,
                         title,
@@ -107,7 +107,7 @@ class RemoteRepository {
                 val releaseDate = objects.getString("first_air_date")
                 val episodeRunTime = objects.getJSONArray("episode_run_time")
                 val duration = episodeRunTime.getString(0)
-                val id = objects.getString("id")
+                val id = objects.getInt("id")
                 val res = Tv(
                     id,
                     title,

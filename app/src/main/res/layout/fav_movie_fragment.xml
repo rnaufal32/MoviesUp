@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="std.aanrstudio.apps.moviesup.ui.fragment.movie.FavMovieFragment">
+    tools:context="std.aanrstudio.apps.moviesup.ui.fragment.favorite.movie.FavMovieFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fav_movie_list"

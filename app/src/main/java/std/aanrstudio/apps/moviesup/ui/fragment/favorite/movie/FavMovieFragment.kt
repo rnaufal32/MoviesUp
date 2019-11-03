@@ -1,4 +1,4 @@
-package std.aanrstudio.apps.moviesup.ui.fragment.movie
+package std.aanrstudio.apps.moviesup.ui.fragment.favorite.movie
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -17,7 +17,10 @@ class FavMovieFragment : Fragment() {
 
     private lateinit var viewModel: FavMovieViewModel
     lateinit var movieList: RecyclerView
-    lateinit var adapter: MoviesAdapter
+
+    private val adapter: FavMovieAdapter by lazy {
+        FavMovieAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,9 +37,10 @@ class FavMovieFragment : Fragment() {
         movieList.setHasFixedSize(true)
         movieList.layoutManager = LinearLayoutManager(view.context)
 
-        viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(requireContext())).get(FavMovieViewModel::class.java)
-        viewModel.getFavMovies().observe(this, Observer {
-            adapter = MoviesAdapter(it)
+        viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(requireContext())).get(
+            FavMovieViewModel::class.java)
+        viewModel.getPaged().observe(this, Observer {
+            adapter.submitList(it)
             movieList.adapter = adapter
         })
     }

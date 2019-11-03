@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 
 import std.aanrstudio.apps.moviesup.R
 import std.aanrstudio.apps.moviesup.data.source.model.Movie
+import std.aanrstudio.apps.moviesup.data.source.model.Tv
 import std.aanrstudio.apps.moviesup.di.Injection
 
 class DetailActivity : AppCompatActivity() {
@@ -31,6 +32,7 @@ class DetailActivity : AppCompatActivity() {
     lateinit var pref: SharedPreferences
 
     private var movie: Movie = Movie()
+    private var tv: Tv = Tv()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,13 +74,21 @@ class DetailActivity : AppCompatActivity() {
                 val editor = pref.edit()
                 editor.putBoolean(id.toString(), false)
                 editor.apply()
-                detailViewModel.delFilmFavorite(movie)
+                if (extraIntent.equals("Movie")) {
+                    detailViewModel.delFilmFavorite(movie)
+                } else {
+                    detailViewModel.delTvFavorite(tv)
+                }
                 Toast.makeText(this, "Dihapus dari Favorit", Toast.LENGTH_LONG).show()
             } else {
                 val editor = pref.edit()
                 editor.putBoolean(id.toString(), true)
                 editor.apply()
-                detailViewModel.addFilmFavorite(movie)
+                if (extraIntent.equals("Movie")) {
+                    detailViewModel.addFilmFavorite(movie)
+                } else {
+                    detailViewModel.addTvFavorite(tv)
+                }
                 Toast.makeText(this, "Ditambahkan ke Favorit", Toast.LENGTH_LONG).show()
             }
             changeButton(id)
@@ -117,7 +127,7 @@ class DetailActivity : AppCompatActivity() {
             Glide.with(this)
                 .load(it.poster)
                 .into(poster)
-
+            tv = it
         })
     }
 
