@@ -18,6 +18,7 @@ class FavTvFragment : Fragment() {
 
     private lateinit var viewModel: FavTvViewModel
     lateinit var recyclerView: RecyclerView
+    lateinit var emptyView: View
 
     private val adapter: FavTvAdapter by lazy {
         FavTvAdapter()
@@ -34,6 +35,7 @@ class FavTvFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.fav_tv_list)
+        emptyView = view.findViewById(R.id.empty_fav_tv)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
@@ -41,6 +43,13 @@ class FavTvFragment : Fragment() {
         viewModel.getPaged().observe(this, Observer {
             adapter.submitList(it)
             recyclerView.adapter = adapter
+            if (it.size > 0) {
+                emptyView.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            } else {
+                emptyView.visibility = View.VISIBLE
+                recyclerView.visibility = View.INVISIBLE
+            }
         })
     }
 }

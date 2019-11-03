@@ -12,4 +12,5 @@
 
     <string name="detail">Detail</string>
     <string name="tambah_favorit">Tambah Favorit</string>
+    <string name="empty_fav">Tidak Ada Daftar Favorit</string>
 </resources>

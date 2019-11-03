@@ -17,6 +17,7 @@ class FavMovieFragment : Fragment() {
 
     private lateinit var viewModel: FavMovieViewModel
     lateinit var movieList: RecyclerView
+    lateinit var emptyView: View
 
     private val adapter: FavMovieAdapter by lazy {
         FavMovieAdapter()
@@ -33,6 +34,7 @@ class FavMovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         movieList = view.findViewById(R.id.fav_movie_list)
+        emptyView = view.findViewById(R.id.empty_fav_movie)
 
         movieList.setHasFixedSize(true)
         movieList.layoutManager = LinearLayoutManager(view.context)
@@ -42,6 +44,13 @@ class FavMovieFragment : Fragment() {
         viewModel.getPaged().observe(this, Observer {
             adapter.submitList(it)
             movieList.adapter = adapter
+            if (it.size > 0) {
+                emptyView.visibility = View.GONE
+                movieList.visibility = View.VISIBLE
+            } else {
+                emptyView.visibility = View.VISIBLE
+                movieList.visibility = View.INVISIBLE
+            }
         })
     }
 }
